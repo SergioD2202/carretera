@@ -1,0 +1,19 @@
+{
+  "name": "carretera",
+  "version": "1.0.0",
+  "description": "Simulación de un sistema de tránsito de C1 Maracaibo",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SergioD2202/carretera.git"
+  },
+  "author": "Sergio_Delgado,Adriana_Argüello,Klissman_Granados",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/SergioD2202/carretera/issues"
+  },
+  "homepage": "https://github.com/SergioD2202/carretera#readme"
+}
