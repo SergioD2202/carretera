@@ -35,40 +35,44 @@ function sundayOfR(year){
 }
 
 
-function holyWeek(year, day){
+function holyWeek(year, opt){
     const resurrection = sundayOfR(year)
 
     let holiday
 
-    if(day === "Jueves Santo") {
+    //Jueves Santo
+    if(opt === 1) {
         holiday = daysBefore(resurrection,2)
         
-        return `El Jueves Santo cae ${holiday.getUTCDate()}/${holiday.getUTCMonth()+1}`
+        return `${holiday.getUTCDate()}/${holiday.getUTCMonth()+1}`
     }
 
-    if(day === "Viernes Santo") {
+    //Viernes Santo
+    if(opt === 2) {
         holiday = daysBefore(resurrection,1)
         
-        return `El Viernes Santo cae ${holiday.getUTCDate()}/${holiday.getUTCMonth()+1}`
+        return `${holiday.getUTCDate()}/${holiday.getUTCMonth()+1}`
     }
 
 }
 
-function carnival(year, day){
+function carnival(year, opt){
     const resurrection = sundayOfR(year)
 
     let holiday
 
-    if(day === "Lunes de carnaval") {
+    //Lunes de carnaval
+    if(opt === 1) {
         holiday = daysBefore(resurrection,47)
         
-        return `El Lunes de carnaval cae ${holiday.getUTCDate()}/${holiday.getUTCMonth()+1}`
+        return `${holiday.getUTCDate()}/${holiday.getUTCMonth()+1}`
     }
 
-    if(day === "Martes de carnaval") {
+    //Martes de carnaval
+    if(opt === 2) {
         holiday = daysBefore(resurrection,46)
         
-        return `El Martes de carnaval cae ${holiday.getUTCDate()}/${holiday.getUTCMonth()+1}`
+        return `${holiday.getUTCDate()}/${holiday.getUTCMonth()+1}`
     }
 }
 
@@ -81,4 +85,4 @@ function daysBefore(end, diff){
     return new Date(before)
 }
 
-module.exports = holyWeek
+module.exports = {holyWeek, carnival}
