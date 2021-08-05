@@ -2,10 +2,6 @@ const dow = require('./calendario/calendario.js')
 
 const dayjs = require('./node_modules/dayjs')
 
-const startDate = new Date(2021,2,31,21,30,0)
-
-const endDate = new Date(2021,3,2,20,0,0)
-
 const randomAccident = () =>{
     const value = Math.random()
 
@@ -26,8 +22,6 @@ const ride = (light_cars) =>{
     }
     return [road1,road2]
 }
-
-simulacion(startDate,endDate)
 
 function holidayRoad (accdnt1,accdnt2,day,current){
 
@@ -60,14 +54,14 @@ function holidayRoad (accdnt1,accdnt2,day,current){
     if(!accdnt2) road.south_north = cars.heavyWeight
     else road.emergency += cars.heavyWeight
 
-    console.log(`${day.dayWeek} [${current.toDate()}]
+    return `${day.dayWeek} [${current.toDate()}]
     
     Vehículos en Norte-Sur: ${road.north_south}
     Vehículos en Sur-Norte: ${road.south_north}
     Vehículos en Aérea 1: ${road.light_1}
     Vehículos en Aérea 2: ${road.light_2}
     Vehículos en la vía de emergencia: ${road.emergency}     
-    `)
+    `
 }
 
 function weekendRoad (accdnt1,accdnt2,hour,day,current){
@@ -142,14 +136,14 @@ function weekendRoad (accdnt1,accdnt2,hour,day,current){
         else road.emergency += cars.heavyWeight_road2
     }
 
-    console.log(`${day.dayWeek} [${current.toDate()}]
+    return `${day.dayWeek} [${current.toDate()}]
     
     Vehículos en Norte-Sur: ${road.north_south}
     Vehículos en Sur-Norte: ${road.south_north}
     Vehículos en Aérea 1: ${road.light_1}
     Vehículos en Aérea 2: ${road.light_2}
     Vehículos en la vía de emergencia: ${road.emergency}     
-    `)
+    `
 }
 
 function weekRoad(accdnt1,accdnt2,hour,day,current){
@@ -225,20 +219,22 @@ function weekRoad(accdnt1,accdnt2,hour,day,current){
         else road.emergency += cars.heavyWeight_road2
     }
 
-    console.log(`${day.dayWeek} [${current.toDate()}]
+    return `${day.dayWeek} [${current.toDate()}]
     
     Vehículos en Norte-Sur: ${road.north_south}
     Vehículos en Sur-Norte: ${road.south_north}
     Vehículos en Aérea 1: ${road.light_1}
     Vehículos en Aérea 2: ${road.light_2}
     Vehículos en la vía de emergencia: ${road.emergency}     
-    `)
+    `
 }
 
 function simulacion(start,end) {
 
     let current = dayjs(start)
     let day, accident1, accident2
+
+    const sim = []
 
     while(current.toDate().getTime()<=end.getTime()){
         day = dow(current.toDate())
@@ -247,15 +243,15 @@ function simulacion(start,end) {
         accident2 = randomAccident()
 
         if(day.isHoliday) {
-            holidayRoad(accident1, accident2,day,current)   
+           sim.push(holidayRoad(accident1, accident2,day,current))   
         }
 
         else if(day.dayNumber === 0 || day.dayNumber === 6){
-            weekendRoad(accident1,accident2,current.hour(),day,current)
+           sim.push(weekendRoad(accident1,accident2,current.hour(),day,current))
         }
 
         else {
-            weekRoad(accident1,accident2,current.hour(),day,current)
+            sim.push(weekRoad(accident1,accident2,current.hour(),day,current))
         }
 
         if(current.hour() === 22) current = current.add(8,"hours")
@@ -263,7 +259,10 @@ function simulacion(start,end) {
         else current = current.add(30,"minutes")
     }
     
+    return {"results":sim}
 }
+
+module.exports = simulacion
 
 
 

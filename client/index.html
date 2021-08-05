@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="bootstrap.min.css">
+    <title>Simulación C2</title>
+</head>
+<body>
+
+    <div class="shadow p-3 mb-5 bg-white rounded m-5 p-5">
+
+        <div class="border border-primary m-5 p-5">
+              <h1 class="text-center">Simulación de C2</h1>
+            Ingrese la fecha/hora de inicio y la fecha/hora final <br> <br>
+            <form action="" class="form-group flex">
+
+                <label for="inicio">Fecha de inicio</label>
+                <input type="date" id="inicio"  class="sm-form-control">
+
+                <label for="hora-inicio">hora de inicio (entre 6 y 22)</label>
+                <input type="number" id="hora-inicio" class="sm-form-control">
+
+                <label for="final">Fecha final</label>
+                <input type="date" id="final"  class="sm-form-control">
+
+                <label for="hora-final">hora final (entre 6 y 22)</label>
+                <input type="number" id="hora-final" class="sm-form-control">
+
+                <input type="button" value="Enviar" class="btn btn-outline-primary send">
+            </form>
+        </div>
+    
+        <div class="border border-success m-5 p-5 result">
+        </div>
+    </div>
+    
+
+    <script src="script.js" type="module"></script>
+</body>
+</html>
